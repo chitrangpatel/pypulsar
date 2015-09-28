@@ -223,7 +223,11 @@ class Spectra(object):
         other.data = np.where(mask, tmp, other.data)
         return other
 
+<<<<<<< HEAD
     def dedisperse(self, dm=0, padval=0):
+=======
+    def dedisperse(self, dm=0, padval=0, trim=False):
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
         """Shift channels according to the delays predicted by
             the given DM.
             
@@ -232,6 +236,11 @@ class Spectra(object):
                 padval: The padding value to use when shifting
                     channels during dedispersion. See documentation
                     of Spectra.shift_channels. (Default: 0)
+<<<<<<< HEAD
+=======
+                trim: Remove spectra that are no longer complete
+                    (Default: False)
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
 
             Outputs:
                 None
@@ -248,6 +257,15 @@ class Spectra(object):
 
         self.dm=dm
 
+<<<<<<< HEAD
+=======
+        if trim:
+            ntrim = max(rel_bindelays)
+            if ntrim > 0:
+                self.data = self.data[:,:-ntrim]
+                self.numspectra -= ntrim
+
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
     def smooth(self, width=1, padval=0):
         """Smooth each channel by convolving with a top hat
             of given width. The height of the top had is

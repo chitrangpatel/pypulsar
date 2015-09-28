@@ -13,6 +13,10 @@ from scipy import special
 
 from pypulsar.utils import skytemp
 
+<<<<<<< HEAD
+=======
+TCMB = 2.73 # K
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
 verbose = True
 
 class SnrEstimator:
@@ -26,9 +30,15 @@ class SnrEstimator:
         bw: Bandwidth of observation (in MHz).
         numpol: Number of polarizations summed.
         gain: Telescope's gain (in Jy/K).
+<<<<<<< HEAD
                * Can be a scalar, or a function of zenth and azimuth.
         systemp: Receiver's temperature (in K).
                * Can be a scalar, or a function of zenth and azimuth.
+=======
+               * Can be a scalar, or a function of zenith and azimuth.
+        systemp: Receiver's temperature (in K).
+               * Can be a scalar, or a function of zenith and azimuth.
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
         fwhm: Full-width half-max of telescope's beam (in arcmin).
                * Can be a scalar, or a function of zenth and azimuth.
         """
@@ -75,6 +85,11 @@ class SnrEstimator:
         """
         if w50 is None:
             w50 = 0.05*period
+<<<<<<< HEAD
+=======
+        if Serror is None:
+            Serror = 0
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
 
         if self.freq != Sfreq:
             Smean, Serror = change_freq(Smean, error=Serror, \
@@ -88,7 +103,11 @@ class SnrEstimator:
             if verbose:
                 sys.stderr.write("No coords provided. Setting Tsky to 0 K.")
             Tsky = 0
+<<<<<<< HEAD
         temp = self.systemp(za, az)+Tsky
+=======
+        temp = self.systemp(za, az)+Tsky+TCMB
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
 
         k = self.gain(za, az)*airy_pattern(self.fwhm(za, az), angsep) * \
             np.sqrt(self.numpol*time*self.bw)/temp * \

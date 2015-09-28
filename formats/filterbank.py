@@ -82,6 +82,10 @@ class filterbank:
         """
         self.read_header()
         self.frequencies = self.fch1 + self.foff*np.arange(self.nchans)
+<<<<<<< HEAD
+=======
+        self.freqs = self.frequencies
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
         self.is_hifreq_first = (self.foff < 0)
 
     def read_sample(self):

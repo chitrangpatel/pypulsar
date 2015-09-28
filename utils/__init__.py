@@ -3,7 +3,11 @@ import sys
 __all__ = ["estimate_snr", "mypolycos", "skytemp", "telescopes", "astro"]
 
 
+<<<<<<< HEAD
 def show_progress(iterator, width=0, tot=None):
+=======
+def show_progress(iterator, width=0, tot=None, fmt="%d", show_number=False):
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
     """Wrap an iterator so that a progress counter is printed
         as we iterate.
 
@@ -33,7 +37,15 @@ def show_progress(iterator, width=0, tot=None):
                     " "*nsp + \
                     "]"*bool(width)
             old = progpcnt
+<<<<<<< HEAD
             sys.stdout.write("     " + bar + " %d %% \r" % progpcnt)
+=======
+            progpcntstr = fmt % progpcnt
+            sys.stdout.write("     " + bar + " %s %% " % progpcntstr)
+            if show_number:
+                sys.stdout.write("(%d of %d)" % (curr, tot))
+            sys.stdout.write("\r")
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
             sys.stdout.flush()
         curr += 1
         yield toreturn

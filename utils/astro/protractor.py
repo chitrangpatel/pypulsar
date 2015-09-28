@@ -164,14 +164,23 @@ def rad_to_rad(rads):
     return rads
 
 
+<<<<<<< HEAD
 def convert(values, intype, outtype):
+=======
+def convert(values, input, output):
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
     """Convert values from 'intype' to 'outtype'.
     """
     # request two functions: 
     #    Conversion from 'in' to rad
     #    Conversion from rad to 'out'
+<<<<<<< HEAD
     conv_in_to_rad = getfunction('%s_to_rad' % intype)
     conv_rad_to_out = getfunction('rad_to_%s' % outtype)
+=======
+    conv_in_to_rad = getfunction('%s_to_rad' % input)
+    conv_rad_to_out = getfunction('rad_to_%s' % output)
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
     
     return conv_rad_to_out(conv_in_to_rad(values))
     

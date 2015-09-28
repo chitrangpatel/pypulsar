@@ -251,6 +251,10 @@ def create_polycos(par, telescope_id, center_freq, start_mjd, end_mjd, \
         psrname = par.PSR
     else:
         psrname = par.PSRJ
+<<<<<<< HEAD
+=======
+    psrname = psrname.lstrip("BJ")
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
     tzfile.write("%s %d %d %d %0.5f\n" % (psrname, SPAN_DEFAULT, \
                         NUMCOEFFS_DEFAULT, max_hour_angle, center_freq)) 
     tzfile.close()
@@ -258,7 +262,17 @@ def create_polycos(par, telescope_id, center_freq, start_mjd, end_mjd, \
                         stdin=subprocess.PIPE, stdout=subprocess.PIPE, \
                         stderr=subprocess.PIPE)
     (out, err) = tempo.communicate("%d %d\n" % (start_mjd, end_mjd))
+<<<<<<< HEAD
     new_polycos = polycos(filenm='polyco.dat')
+=======
+    try:
+        new_polycos = polycos(filenm='polyco.dat')
+    except:
+        sys.stderr.write("Could not read/create polycos!\n")
+        sys.stderr.write("TEMPO Output:\n%s\n" % out)
+        sys.stderr.write("TEMPO Error:\n%s\n" % err)
+        sys.stderr.write("Parfile: %s\n" % par.FILE)
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
     # Remove files created by us and by TEMPO
     if not DEBUG:
         os.remove("tz.in")

@@ -17,7 +17,11 @@ import sys
 import argparse
 
 import pyslalib.slalib as slalib
+<<<<<<< HEAD
 import astropy.io.fits as pyfits
+=======
+import pyfits
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
 import numpy as np
 import psr_utils
 from pypulsar.utils.astro import protractor
@@ -63,7 +67,11 @@ class PsrfitsFile(object):
         self.nsubints = self.specinfo.num_subint[0]
         self.freqs = self.fits['SUBINT'].data[0]['DAT_FREQ'] 
         self.frequencies = self.freqs # Alias
+<<<<<<< HEAD
         self.tsamp = self.specinfo.dt 
+=======
+        self.tsamp = self.dt 
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
 
     def read_subint(self, isub, apply_weights=True, apply_scales=True, \
                     apply_offsets=True):
@@ -162,6 +170,7 @@ class PsrfitsFile(object):
             data = np.concatenate(data)
         else:
             data = np.array(data).squeeze()
+<<<<<<< HEAD
 	data = np.transpose(data)
         # Truncate data to desired interval
 	if trunc > 0:
@@ -170,6 +179,17 @@ class PsrfitsFile(object):
             data = data[:, skip:]
         else:
             raise ValueError("Number of bins to truncate is negative: %d" % trunc)
+=======
+
+        # Truncate data to desired interval
+        if trunc > 0:
+            data = data[:, skip:-trunc]
+        elif trunc == 0:
+            data = data[:, skip:]
+        else:
+            raise ValueError("Number of bins to truncate is negative: %d" % trunc)
+    
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
         if not self.specinfo.need_flipband:
             # for psrfits module freqs go from low to high.
             # spectra module expects high frequency first.
@@ -178,7 +198,11 @@ class PsrfitsFile(object):
         else:
             freqs = self.freqs 
 
+<<<<<<< HEAD
 	return spectra.Spectra(freqs, self.tsamp, data, \
+=======
+        return spectra.Spectra(freqs, self.tsamp, data, \
+>>>>>>> f45ce8c6b292eac21fe1da7f7e1063673f61f0ad
                                starttime=self.tsamp*startsamp, dm=0)
 
 
